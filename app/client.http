@@ -1,0 +1,86 @@
+@email=root@toor.te
+@password=Root!ddd3raarDEWSAwqe2
+
+
+
+### register
+# @name postRegister
+POST http://127.0.0.1:7000/register
+Content-Type: application/json
+
+{
+    "email": "{{email}}",
+    "password": "{{password}}"
+}
+
+###
+@id = {{postRegister.response.body.id}}
+
+### login
+# @name postLogin
+POST http://127.0.0.1:7000/login
+Content-Type: application/json
+
+{
+    "email": "{{email}}",
+    "password": "{{password}}"
+}
+
+###
+@token = {{postLogin.response.body.token}}
+###
+
+GET http://127.0.0.1:7000/users/{{id}}
+Content-Type: application/json
+
+###
+
+GET http://127.0.0.1:7000/users/5
+Content-Type: application/json
+
+###
+DELETE http://127.0.0.1:7000/users/{{id}}
+Content-Type: application/json
+Token: {{token}}
+
+
+###
+
+POST http://127.0.0.1:7000/adverts
+Content-Type: application/json
+Token: {{token}}
+
+{
+    "title": "4",
+    "description": "1"
+}
+
+###
+
+###
+
+PATCH http://127.0.0.1:7000/adverts/6
+Content-Type: application/json
+Token: {{token}}
+
+{
+    "title": "4",
+    "description": "asdasdf"
+}
+
+###
+
+
+GET http://127.0.0.1:7000/adverts/3
+Content-Type: application/json
+
+
+
+###
+
+DELETE http://127.0.0.1:7000/adverts/3
+Content-Type: application/json
+Token: {{token}}
+
+
+###
