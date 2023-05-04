@@ -20,7 +20,7 @@ class User(Base):
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     email = Column(EmailType, unique=True, index=True)
-    password = Column(String(37), nullable=False)
+    password = Column(String(120), nullable=False)
     creation_time = Column(DateTime, server_default=func.now())
 
 
@@ -40,7 +40,7 @@ class Ads(Base):
     __tablename__ = 'ads'
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    title = Column(String(length=35), nullable=True, unique=False)
+    title = Column(String(length=35), nullable=False, unique=False)
     description = Column(String(length=120), nullable=False)
     creation_time = Column(DateTime, server_default=func.now())
     owner_id = Column(Integer, ForeignKey('users.id', ondelete='CASCADE'))

@@ -1,6 +1,5 @@
-@email=root@toor.te
-@password=Root!ddd3raarDEWSAwqe2
-
+@email=rosdfasd@asdas.tea
+@password=asddt!ddd3rass11asasdas12312
 
 
 ### register
@@ -9,12 +8,11 @@ POST http://127.0.0.1:7000/register
 Content-Type: application/json
 
 {
-    "email": "{{email}}",
-    "password": "{{password}}"
+    "email": "rosdfasd@asdas.tea",
+    "password": "asddt!ddd3rass11asasdas12312"
 }
 
-###
-@id = {{postRegister.response.body.id}}
+
 
 ### login
 # @name postLogin
@@ -22,15 +20,15 @@ POST http://127.0.0.1:7000/login
 Content-Type: application/json
 
 {
-    "email": "{{email}}",
-    "password": "{{password}}"
+    "email": "rosdfasd@asdas.tea",
+    "password": "asddt!ddd3rass11asasdas12312"
 }
 
 ###
-@token = {{postLogin.response.body.token}}
+@token = {{token}}
 ###
 
-GET http://127.0.0.1:7000/users/{{id}}
+GET http://127.0.0.1:7000/users/1
 Content-Type: application/json
 
 ###
@@ -39,46 +37,46 @@ GET http://127.0.0.1:7000/users/5
 Content-Type: application/json
 
 ###
-DELETE http://127.0.0.1:7000/users/{{id}}
+DELETE http://127.0.0.1:7000/users/1
 Content-Type: application/json
 Token: {{token}}
 
 
 ###
 
-POST http://127.0.0.1:7000/adverts
+POST http://127.0.0.1:7000/ads
 Content-Type: application/json
 Token: {{token}}
 
 {
-    "title": "4",
-    "description": "1"
+    "title": "Nice title",
+    "description": "Big one discription"
 }
 
 ###
 
 ###
 
-PATCH http://127.0.0.1:7000/adverts/6
+PATCH http://127.0.0.1:7000/ads/3
 Content-Type: application/json
 Token: {{token}}
 
 {
-    "title": "4",
-    "description": "asdasdf"
+    "title": "4top",
+    "description": "New small disc"
 }
 
 ###
 
 
-GET http://127.0.0.1:7000/adverts/3
+GET http://127.0.0.1:7000/ads/3
 Content-Type: application/json
 
 
 
 ###
 
-DELETE http://127.0.0.1:7000/adverts/3
+DELETE http://127.0.0.1:7000/ads/3
 Content-Type: application/json
 Token: {{token}}
 

@@ -1,7 +1,7 @@
 import time
 import uuid
 
-from flask_bcrypt import Bcrypt
+import flask_bcrypt
 
 from app import get_app
 from config import TOKEN_TTL
@@ -10,7 +10,7 @@ from flask import request
 from models import Token
 
 app = get_app()
-bcrypt = Bcrypt(app)
+bcrypt = flask_bcrypt.Bcrypt(app)
 
 
 def hash_password(password: str) -> str:

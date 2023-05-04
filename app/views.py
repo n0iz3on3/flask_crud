@@ -40,7 +40,7 @@ class UserView(MethodView):
 
     def get(self, user_id: int):
         with Session() as session:
-            user = get_item(user_id, session)
+            user = get_item(session, User, user_id)
             return jsonify(
                 {
                     'id': user.id,
@@ -102,9 +102,9 @@ class AdsView(MethodView):
                     'owner_id': ads.owner_id,
                 })
 
-    def get(self, advert_id: int):
+    def get(self, ads_id: int):
         with Session() as session:
-            ads = get_item(session, Ads, advert_id)
+            ads = get_item(session, Ads, ads_id)
             return jsonify(
                 {
                     'id': ads.id,
@@ -115,14 +115,14 @@ class AdsView(MethodView):
                 }
             )
 
-    def patch(self, advert_id: int):
+    def patch(self, ads_id: int):
         if not request.json:
             raise HttpError(400, 'request error')
         with Session() as session:
             patch_data = validate(PatchAds, request.json)
             token = check_auth(session)
-            ads = get_item(session, Ads, advert_id)
-            if token.user_id != ads.owner.id:
+            ads = get_item(session, Ads, ads_id)
+            if token.user_id != ads.user.id:
                 raise HttpError(403, 'user has no access')
             ads = patch_item(session, ads, **patch_data)
 
@@ -136,11 +136,11 @@ class AdsView(MethodView):
                 }
             )
 
-    def delete(self, advert_id: int):
+    def delete(self, ads_id: int):
         with Session() as session:
-            ads = get_item(session, Ads, advert_id)
+            ads = get_item(session, Ads, ads_id)
             token = check_auth(session)
-            if token.user_id != ads.owner.id:
+            if token.user_id != ads.user.id:
                 raise HttpError(403, 'user has no access')
             delete_item(session, ads)
             return jsonify({'deleted': True})

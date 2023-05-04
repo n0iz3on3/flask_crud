@@ -44,15 +44,15 @@ class CreateAds(BaseModel):
 
     @validator('title')
     def validate_title(cls, value: str):
-        if not (5 <= value <= 35):
+        if not (5 <= len(value) <= 35):
             raise ValueError('incorrect title length')
         return value
 
     @validator('description')
     def validate_description(cls, value: str):
-        if value > 120:
+        if len(value) > 120:
             raise ValueError('description character limit exceeded')
-        return
+        return value
 
 
 class PatchAds(CreateAds, BaseModel):
