@@ -11,7 +11,12 @@ PG_PORT:5431
 TOKEN_TTL:86400
 PASSWORD_LENGTH:12
 ```
-Установить зависимости: 
+Подготовить окружение: 
+```python
+python3 -m venv env
+
+source env/bin/activate
+```
 ```python
 pip install -r requirements.txt
 ```
@@ -22,7 +27,6 @@ docker compose up -d
 3. Запустить приложение выполнив последовательно:
 ```python
 cd app
-```
-```python
+
 python main.py
 ```
